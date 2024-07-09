@@ -1,4 +1,3 @@
 <template>
-  <div>Index Page</div>
-  <NuxtLink to="/detail">Detail Page</NuxtLink>
+  <h1>index Page</h1>
 </template>
