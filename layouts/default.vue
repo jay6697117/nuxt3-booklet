@@ -1,16 +1,21 @@
 <template>
   <div>
     <div class="header">
-      <nav>导航栏</nav>
+      <div class="user">
+        <h2>nuxt3教学</h2>
+        <img class="avatar" src="~/assets/user.png" alt="avatar" />
+      </div>
+      <nav>
+        导航栏
+        <img class="avatar" src="/logo.png" alt="avatar" />
+      </nav>
       <div class="menu">
-        <NuxtLink class="item" to="/"><button>index Page</button></NuxtLink>
-        <NuxtLink class="item" :to="`/detail`"><button>detail Page</button></NuxtLink>
-        <NuxtLink class="item" :to="`/detail/${num}`">
-          <button>detail/{{ num }} Page</button>
-        </NuxtLink>
+        <NuxtLink class="item" to="/">index Page</NuxtLink>
+        <NuxtLink class="item" :to="`/detail`">detail Page</NuxtLink>
+        <NuxtLink class="item" :to="`/detail/${num}`">detail/{{ num }} Page</NuxtLink>
       </div>
     </div>
-    <div style="background-color: skyblue; padding: 20px">
+    <div style="background-color: skyblue; padding: 15px">
       <slot />
     </div>
   </div>
@@ -18,27 +23,69 @@
 
 <script lang="ts" setup>
 const num = ref(1); // 初始值为 1
-onMounted(() => {
-  num.value = Math.floor(Math.random() * 10) + 1; // 在客户端渲染时生成随机数
-});
 
+const handleClick = () => {
+  num.value = Math.floor(Math.random() * 10) + 1; // 点击按钮时生成随机数
+};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .header {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-}
+  border: 5px solid purple;
+  margin-bottom: 20px;
+  padding: 15px;
 
-.header .menu {
-  display: flex;
-  justify-content: flex-start;
-  padding: 20px 0;
-}
+  .user,
+  nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 
-.header .menu .item {
-  margin-right: 10px;
+  .user {
+    background-color: rgba(128, 0, 128, 0.8);
+    width: 100%;
+    padding: 20px 10px;
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border: 1px solid rgb(0, 180, 0);
+      border-radius: 50%;
+      margin-left: 10px;
+    }
+  }
+
+  nav {
+    background-color: lightpink;
+    border-top: 1px solid #ccc;
+    width: 100%;
+    padding: 20px 10px;
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border: 1px solid rgb(0, 180, 0);
+      border-radius: 50%;
+      margin-left: 10px;
+    }
+  }
+
+  .menu {
+    background-color: lightgray;
+    display: flex;
+    justify-content: flex-start;
+    border-top: 1px solid #ccc;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding: 20px 10px;
+    .item {
+      margin-right: 20px;
+    }
+  }
 }
 </style>
